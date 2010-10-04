@@ -9,10 +9,10 @@
 #ifndef S8_EVENT
 #define S8_EVENT
 
-#include "interface/EventID.h"
-#include "interface/Jet.h"
-#include "interface/Muon.h"
-#include "interface/PrimaryVertex.h"
+#include "interface/S8EventID.h"
+#include "interface/S8Jet.h"
+#include "interface/S8Muon.h"
+#include "interface/S8PrimaryVertex.h"
 
 namespace s8
 {

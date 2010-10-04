@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 
-#include "interface/EventID.h"
+#include "interface/S8EventID.h"
 
 using std::runtime_error;
 

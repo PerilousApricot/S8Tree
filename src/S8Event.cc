@@ -6,9 +6,9 @@
  * Copyright 2010, All rights reserved
  */
 
-#include "interface/EventID.h"
+#include "interface/S8EventID.h"
 
-#include "interface/Event.h"
+#include "interface/S8Event.h"
 
 using s8::Event;
 

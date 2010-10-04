@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 
-#include "interface/Jet.h"
+#include "interface/S8Jet.h"
 
 using std::runtime_error;
 

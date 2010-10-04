@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 
-#include "interface/PrimaryVertex.h"
+#include "interface/S8PrimaryVertex.h"
 
 using std::runtime_error;
 

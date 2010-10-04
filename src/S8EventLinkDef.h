@@ -1,12 +1,12 @@
 #include <utility>
 #include <vector>
 
-#include "interface/EventID.h"
-#include "interface/GenParticle.h"
-#include "interface/Jet.h"
-#include "interface/Muon.h"
-#include "interface/PrimaryVertex.h"
-#include "interface/Event.h"
+#include "interface/S8EventID.h"
+#include "interface/S8GenParticle.h"
+#include "interface/S8Jet.h"
+#include "interface/S8Muon.h"
+#include "interface/S8PrimaryVertex.h"
+#include "interface/S8Event.h"
 
 #ifdef __CINT__
 

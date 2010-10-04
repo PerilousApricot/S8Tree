@@ -14,7 +14,7 @@
 #include <TLorentzVector.h>
 #include <TVector3.h>
 
-#include "interface/GenParticle.h"
+#include "interface/S8GenParticle.h"
 
 namespace s8
 {

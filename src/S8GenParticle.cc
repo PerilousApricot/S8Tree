@@ -6,7 +6,7 @@
  * Copyright 2010, All rights reserved
  */
 
-#include "interface/GenParticle.h"
+#include "interface/S8GenParticle.h"
 
 using s8::GenParticle;
 
