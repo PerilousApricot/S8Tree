@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 
-#include "RecoBTag/PerformanceMeasurements/interface/EventID.h"
+#include "interface/EventID.h"
 
 using std::runtime_error;
 

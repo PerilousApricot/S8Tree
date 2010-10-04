@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 
-#include "RecoBTag/PerformanceMeasurements/interface/Jet.h"
+#include "interface/Jet.h"
 
 using std::runtime_error;
 

@@ -6,9 +6,9 @@
  * Copyright 2010, All rights reserved
  */
 
-#include "RecoBTag/PerformanceMeasurements/interface/EventID.h"
+#include "interface/EventID.h"
 
-#include "RecoBTag/PerformanceMeasurements/interface/Event.h"
+#include "interface/Event.h"
 
 using s8::Event;
 

@@ -14,7 +14,7 @@
 #include <TLorentzVector.h>
 #include <TVector3.h>
 
-#include "RecoBTag/PerformanceMeasurements/interface/GenParticle.h"
+#include "interface/GenParticle.h"
 
 namespace s8
 {

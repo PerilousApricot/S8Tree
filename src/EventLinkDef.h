@@ -1,12 +1,12 @@
 #include <utility>
 #include <vector>
 
-#include "RecoBTag/PerformanceMeasurements/interface/EventID.h"
-#include "RecoBTag/PerformanceMeasurements/interface/GenParticle.h"
-#include "RecoBTag/PerformanceMeasurements/interface/Jet.h"
-#include "RecoBTag/PerformanceMeasurements/interface/Muon.h"
-#include "RecoBTag/PerformanceMeasurements/interface/PrimaryVertex.h"
-#include "RecoBTag/PerformanceMeasurements/interface/Event.h"
+#include "interface/EventID.h"
+#include "interface/GenParticle.h"
+#include "interface/Jet.h"
+#include "interface/Muon.h"
+#include "interface/PrimaryVertex.h"
+#include "interface/Event.h"
 
 #ifdef __CINT__
 

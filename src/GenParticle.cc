@@ -6,7 +6,7 @@
  * Copyright 2010, All rights reserved
  */
 
-#include "RecoBTag/PerformanceMeasurements/interface/GenParticle.h"
+#include "interface/GenParticle.h"
 
 using s8::GenParticle;
 

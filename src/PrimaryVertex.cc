@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 
-#include "RecoBTag/PerformanceMeasurements/interface/PrimaryVertex.h"
+#include "interface/PrimaryVertex.h"
 
 using std::runtime_error;
 
