@@ -1,5 +1,5 @@
 <use name=root>
 
 <export>
-    <lib name=S8Tree>
+    <lib name=TreeSystem8>
 </export>
