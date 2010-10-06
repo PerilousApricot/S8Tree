@@ -9,6 +9,8 @@
 #ifndef S8_EVENT
 #define S8_EVENT
 
+#include <TObject.h>
+
 #include "interface/S8EventID.h"
 #include "interface/S8Jet.h"
 #include "interface/S8Muon.h"
@@ -20,7 +22,7 @@ namespace s8
     typedef std::vector<Muon>          MuonCollection;
     typedef std::vector<PrimaryVertex> PrimaryVertexCollection;
 
-    class Event
+    class Event : public TObject
     {
         public:
             Event() throw();
@@ -45,6 +47,8 @@ namespace s8
             JetCollection           _jets;
             MuonCollection          _muons;
             PrimaryVertexCollection _primaryVertices;
+
+            ClassDef(Event, 0)
     };
 
     inline Event::Event() throw()
