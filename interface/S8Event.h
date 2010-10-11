@@ -10,6 +10,7 @@
 #define S8_EVENT
 
 #include "interface/S8EventID.h"
+#include "interface/S8GenEvent.h"
 #include "interface/S8Jet.h"
 #include "interface/S8Muon.h"
 #include "interface/S8PrimaryVertex.h"
@@ -30,6 +31,9 @@ namespace s8
             EventID &id();
             const EventID &id() const;
 
+            GenEvent &gen();
+            const GenEvent &gen() const;
+
             JetCollection &jets();
             const JetCollection &jets() const;
 
@@ -40,7 +44,8 @@ namespace s8
             const PrimaryVertexCollection &primaryVertices() const;
 
         private:
-            EventID _id;
+            EventID  _id;
+            GenEvent _gen;
 
             JetCollection           _jets;
             MuonCollection          _muons;
@@ -59,6 +64,16 @@ namespace s8
     inline const EventID &Event::id() const
     {
         return _id;
+    }
+
+    inline GenEvent &Event::gen()
+    {
+        return _gen;
+    }
+
+    inline const GenEvent &Event::gen() const
+    {
+        return _gen;
     }
 
     inline JetCollection &Event::jets()

@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "interface/S8EventID.h"
+#include "interface/S8GenEvent.h"
 #include "interface/S8GenParticle.h"
 #include "interface/S8Jet.h"
 #include "interface/S8Muon.h"
@@ -17,6 +18,7 @@
 #pragma link C++ namespace s8;
 
 #pragma link C++ class s8::EventID+;
+#pragma link C++ class s8::GenEvent+;
 #pragma link C++ class s8::GenParticle+;
 #pragma link C++ class s8::Jet+;
 #pragma link C++ class s8::Muon+;
