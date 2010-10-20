@@ -12,13 +12,13 @@
 #include "interface/S8EventID.h"
 #include "interface/S8GenEvent.h"
 #include "interface/S8Jet.h"
-#include "interface/S8Muon.h"
+#include "interface/S8Lepton.h"
 #include "interface/S8PrimaryVertex.h"
 
 namespace s8
 {
     typedef std::vector<Jet>           JetCollection;
-    typedef std::vector<Muon>          MuonCollection;
+    typedef std::vector<Lepton>        LeptonCollection;
     typedef std::vector<PrimaryVertex> PrimaryVertexCollection;
 
     class Event
@@ -37,8 +37,11 @@ namespace s8
             JetCollection &jets();
             const JetCollection &jets() const;
 
-            MuonCollection &muons();
-            const MuonCollection &muons() const;
+            LeptonCollection &muons();
+            const LeptonCollection &muons() const;
+
+            LeptonCollection &electrons();
+            const LeptonCollection &electrons() const;
 
             PrimaryVertexCollection &primaryVertices();
             const PrimaryVertexCollection &primaryVertices() const;
@@ -48,7 +51,8 @@ namespace s8
             GenEvent _gen;
 
             JetCollection           _jets;
-            MuonCollection          _muons;
+            LeptonCollection        _muons;
+            LeptonCollection        _electrons;
             PrimaryVertexCollection _primaryVertices;
     };
 
@@ -86,14 +90,24 @@ namespace s8
         return _jets;
     }
 
-    inline MuonCollection &Event::muons()
+    inline LeptonCollection &Event::muons()
     {
         return _muons;
     }
 
-    inline const MuonCollection &Event::muons() const
+    inline const LeptonCollection &Event::muons() const
     {
         return _muons;
+    }
+
+    inline LeptonCollection &Event::electrons()
+    {
+        return _electrons;
+    }
+
+    inline const LeptonCollection &Event::electrons() const
+    {
+        return _electrons;
     }
 
     inline PrimaryVertexCollection &Event::primaryVertices()

@@ -18,5 +18,6 @@ void Event::reset()
 
     _jets.clear();
     _muons.clear();
+    _electrons.clear();
     _primaryVertices.clear();
 }

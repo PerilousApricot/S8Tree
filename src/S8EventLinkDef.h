@@ -5,7 +5,7 @@
 #include "interface/S8GenEvent.h"
 #include "interface/S8GenParticle.h"
 #include "interface/S8Jet.h"
-#include "interface/S8Muon.h"
+#include "interface/S8Lepton.h"
 #include "interface/S8PrimaryVertex.h"
 #include "interface/S8Event.h"
 
@@ -21,10 +21,10 @@
 #pragma link C++ class s8::GenEvent+;
 #pragma link C++ class s8::GenParticle+;
 #pragma link C++ class s8::Jet+;
-#pragma link C++ class s8::Muon+;
+#pragma link C++ class s8::Lepton+;
 #pragma link C++ class s8::PrimaryVertex+;
 
-#pragma link C++ class std::vector<s8::Muon>;
+#pragma link C++ class std::vector<s8::Lepton>;
 #pragma link C++ class std::vector<s8::Jet>;
 #pragma link C++ class std::vector<s8::PrimaryVertex>;
 
