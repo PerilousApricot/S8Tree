@@ -30,6 +30,7 @@ namespace s8
     {
         public:
             enum Input { Undefined,
+                         BTau,
                          TTbar,
                          BBbar,
                          InclusiveMu5_Pt30,
