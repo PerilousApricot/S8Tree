@@ -14,12 +14,14 @@
 #include "interface/S8Jet.h"
 #include "interface/S8Lepton.h"
 #include "interface/S8PrimaryVertex.h"
+#include "interface/S8Trigger.h"
 
 namespace s8
 {
     typedef std::vector<Jet>           JetCollection;
     typedef std::vector<Lepton>        LeptonCollection;
     typedef std::vector<PrimaryVertex> PrimaryVertexCollection;
+    typedef std::vector<Trigger>       TriggerCollection;
 
     class Event
     {
@@ -46,6 +48,9 @@ namespace s8
             PrimaryVertexCollection &primaryVertices();
             const PrimaryVertexCollection &primaryVertices() const;
 
+            TriggerCollection &triggers();
+            const TriggerCollection &triggers() const;
+
         private:
             EventID  _id;
             GenEvent _gen;
@@ -54,6 +59,7 @@ namespace s8
             LeptonCollection        _muons;
             LeptonCollection        _electrons;
             PrimaryVertexCollection _primaryVertices;
+            TriggerCollection       _triggers;
     };
 
     inline Event::Event() throw()
@@ -118,6 +124,16 @@ namespace s8
     inline const PrimaryVertexCollection &Event::primaryVertices() const
     {
         return _primaryVertices;
+    }
+
+    inline TriggerCollection &Event::triggers()
+    {
+        return _triggers;
+    }
+
+    inline const TriggerCollection &Event::triggers() const
+    {
+        return _triggers;
     }
 }
 
