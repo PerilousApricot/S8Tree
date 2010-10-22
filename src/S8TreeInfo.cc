@@ -63,6 +63,7 @@ void TreeInfo::setInput(const Input &input)
     switch(input)
     {
         case Undefined:          // Fall through
+        case BTau:               // Fall through
         case TTbar:              // Fall through
         case BBbar:              // Fall through
         case InclusiveMu5_Pt30:  // Fall through
