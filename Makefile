@@ -9,7 +9,7 @@ CLEANS   = $(addprefix CLN_,$(SUBSYS))
 LIB		 = libS8Tree.so
 
 # Flags used in compilation
-CXXFLAGS = -Wall -fPIC -I./ -I${ROOTSYS}/include
+CXXFLAGS = -Wall -fPIC -I./ -I${ROOTSYS}/include -I${BOOST_ROOT}/include
 LDFLAGS  = -shared -W1 `root-config --libs`
 
 # Get list of all heads, sources and objects. Each source (%.cc) whould have
