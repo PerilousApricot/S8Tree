@@ -8,6 +8,7 @@
 #include "interface/S8Lepton.h"
 #include "interface/S8PrimaryVertex.h"
 #include "interface/S8Event.h"
+#include "interface/S8TreeInfo.h"
 
 #ifdef __CINT__
 
@@ -29,5 +30,6 @@
 #pragma link C++ class std::vector<s8::PrimaryVertex>;
 
 #pragma link C++ class s8::Event+;
+#pragma link C++ class s8::TreeInfo+;
 
 #endif
