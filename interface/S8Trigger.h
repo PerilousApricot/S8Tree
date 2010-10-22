@@ -34,7 +34,7 @@ namespace s8
 
             virtual operator bool() const;
 
-            std::string &name() const;
+            const std::string &name() const;
 
         private:
             typedef std::vector<Trigger> Triggers;

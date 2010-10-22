@@ -16,6 +16,10 @@ Trigger::Trigger() throw():
 {
 }
 
+Trigger::~Trigger() throw()
+{
+}
+
 Trigger::operator bool() const
 {
     return _isPass;
@@ -25,6 +29,10 @@ Trigger::operator bool() const
 
 TriggerGroup::TriggerGroup() throw():
     _name("undefined")
+{
+}
+
+TriggerGroup::~TriggerGroup() throw()
 {
 }
 
@@ -45,4 +53,9 @@ TriggerGroup::operator bool() const
     }
 
     return result;
+}
+
+const std::string & TriggerGroup::name() const
+{
+    return _name;
 }
