@@ -21,7 +21,7 @@ namespace s8
     typedef std::vector<Jet>           JetCollection;
     typedef std::vector<Lepton>        LeptonCollection;
     typedef std::vector<PrimaryVertex> PrimaryVertexCollection;
-    typedef std::vector<Trigger>       TriggerCollection;
+    typedef std::vector<TriggerGroup>  TriggerCollection;
 
     class Event
     {
