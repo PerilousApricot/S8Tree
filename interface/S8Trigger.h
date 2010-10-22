@@ -10,7 +10,6 @@
 #define S8_TRIGGER
 
 #include <string>
-#include <vector>
 
 namespace s8
 {
@@ -18,29 +17,20 @@ namespace s8
     {
         public:
             Trigger() throw();
-            virtual ~Trigger() throw();
-
-            virtual operator bool() const;
-
-        private:
-            bool _isPass;
-    };
-
-    class TriggerGroup: public Trigger
-    {
-        public:
-            TriggerGroup() throw();
-            virtual ~TriggerGroup() throw();
-
-            virtual operator bool() const;
 
             const std::string &name() const;
+            int version() const;
+
+            virtual operator bool() const;
+
+            void setName(const std::string &);
+            void setVersion(const int &);
+            void setIsPass(const bool &);
 
         private:
-            typedef std::vector<Trigger> Triggers;
-
             std::string _name;
-            Triggers    _versions;
+            int         _version;
+            bool        _isPass;
     };
 }
 

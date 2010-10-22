@@ -6,18 +6,29 @@
  * Copyright 2010, All rights reserved
  */
 
+#include <stdexcept>
+
 #include "interface/S8Trigger.h"
 
+using std::runtime_error;
+
 using s8::Trigger;
-using s8::TriggerGroup;
 
 Trigger::Trigger() throw():
+    _name("undefined"),
+    _version(1),
     _isPass(false)
 {
 }
 
-Trigger::~Trigger() throw()
+const std::string &Trigger::name() const
 {
+    return _name;
+}
+
+int Trigger::version() const
+{
+    return _version;
 }
 
 Trigger::operator bool() const
@@ -25,37 +36,20 @@ Trigger::operator bool() const
     return _isPass;
 }
 
-
-
-TriggerGroup::TriggerGroup() throw():
-    _name("undefined")
+void Trigger::setName(const std::string &name)
 {
+    _name = name;
 }
 
-TriggerGroup::~TriggerGroup() throw()
+void Trigger::setVersion(const int &version)
 {
+    if(1 > version)
+        throw runtime_error("Version can not be negative");
+
+    _version = version;
 }
 
-TriggerGroup::operator bool() const
+void Trigger::setIsPass(const bool &isPass)
 {
-    // OR trigger versions
-    //
-    bool result = false;
-
-    for(Triggers::const_iterator version = _versions.begin();
-        _versions.end() != version;
-        ++version)
-    {
-        result |= *version;
-
-        if (result)
-            break;
-    }
-
-    return result;
-}
-
-const std::string & TriggerGroup::name() const
-{
-    return _name;
+    _isPass = isPass;
 }
