@@ -20,7 +20,7 @@ using boost::lexical_cast;
 using s8::TreeInfo;
 using s8::Version;
 
-Version TreeInfo::_version(3, 0);
+Version TreeInfo::_version(4, 0);
 
 Version::Version(const int &major, const int &minor) throw():
     _major(major),
