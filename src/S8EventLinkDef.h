@@ -8,6 +8,8 @@
 #include "interface/S8Lepton.h"
 #include "interface/S8PrimaryVertex.h"
 #include "interface/S8Trigger.h"
+#include "interface/S8TriggerProxy.h"
+#include "interface/S8TriggerCenter.h"
 #include "interface/S8Event.h"
 #include "interface/S8TreeInfo.h"
 
@@ -26,13 +28,16 @@
 #pragma link C++ class s8::Lepton+;
 #pragma link C++ class s8::PrimaryVertex+;
 #pragma link C++ class s8::Trigger+;
+#pragma link C++ class s8::TriggerProxy+;
 
 #pragma link C++ class std::vector<s8::Lepton>;
 #pragma link C++ class std::vector<s8::Jet>;
 #pragma link C++ class std::vector<s8::PrimaryVertex>;
 #pragma link C++ class std::vector<s8::Trigger>;
+#pragma link C++ class std::vector<s8::TriggerProxy>;
 
 #pragma link C++ class s8::Event+;
 #pragma link C++ class s8::TreeInfo+;
+#pragma link C++ class s8::TriggerCenter+;
 
 #endif

@@ -12,10 +12,10 @@
 #include <string>
 #include <vector>
 
+#include "interface/S8TriggerProxy.h"
+
 namespace s8
 {
-    class TriggerProxy;
-
     class TriggerCenter
     {
         public:
