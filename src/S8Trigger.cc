@@ -6,24 +6,39 @@
  * Copyright 2010, All rights reserved
  */
 
+#include <iostream>
 #include <stdexcept>
 
 #include "interface/S8Trigger.h"
 
+using std::clog;
+using std::endl;
 using std::runtime_error;
 
 using s8::Trigger;
 
 Trigger::Trigger() throw():
-    _name("undefined"),
     _version(1),
     _isPass(false)
 {
+    _proxy = 0;
 }
 
-const std::string &Trigger::name() const
+Trigger::Trigger(const Trigger &trigger) throw():
+    _version(trigger.version()),
+    _isPass(trigger)
 {
-    return _name;
+    clog << "Trigger::Trigger(const Trigger &)" << endl;
+    _proxy = trigger._proxy;
+}
+
+Trigger &Trigger::operator=(const Trigger &trigger)
+{
+    clog << "Trigger::operator=" << endl;
+
+    _proxy = trigger._proxy;
+    _version = trigger.version();
+    _isPass = trigger;
 }
 
 int Trigger::version() const
@@ -34,11 +49,6 @@ int Trigger::version() const
 Trigger::operator bool() const
 {
     return _isPass;
-}
-
-void Trigger::setName(const std::string &name)
-{
-    _name = name;
 }
 
 void Trigger::setVersion(const int &version)

@@ -9,28 +9,29 @@
 #ifndef S8_TRIGGER
 #define S8_TRIGGER
 
-#include <string>
-
 namespace s8
 {
+    class TriggerProxy;
+
     class Trigger
     {
         public:
             Trigger() throw();
+            Trigger(const Trigger &trigger) throw();
 
-            const std::string &name() const;
+            Trigger &operator=(const Trigger &);
+
             int version() const;
 
             virtual operator bool() const;
 
-            void setName(const std::string &);
             void setVersion(const int &);
             void setIsPass(const bool &);
 
         private:
-            std::string _name;
-            int         _version;
-            bool        _isPass;
+            TriggerProxy *_proxy;
+            int           _version;
+            bool          _isPass;
     };
 }
 
