@@ -19,17 +19,16 @@ namespace s8
     class TriggerCenter
     {
         public:
-            TriggerCenter() throw();
-
-            /*
-            const TriggerProxy *proxy(const std::string &) const;
-            */
-
-            TriggerProxy *proxy(const std::string &);
-
-        private:
             typedef std::vector<TriggerProxy> TriggerProxies;
 
+            TriggerCenter() throw();
+
+            TriggerProxy *proxy(const std::string &);
+            const TriggerProxy *proxy(const std::string &) const;
+
+            const TriggerProxies &proxies() const;
+
+        private:
             TriggerProxies _proxies;
     };
 }
