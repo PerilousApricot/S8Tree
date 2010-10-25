@@ -20,4 +20,5 @@ void Event::reset()
     _muons.clear();
     _electrons.clear();
     _primaryVertices.clear();
+    _triggers.clear();
 }
