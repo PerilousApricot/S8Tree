@@ -13,6 +13,8 @@ namespace s8
 {
     class TriggerProxy;
 
+    // DO NOT USE TRIGGERS DIRECTLY. Work with TriggerProxy instead
+    //
     class Trigger
     {
         public:
@@ -25,6 +27,7 @@ namespace s8
 
             virtual operator bool() const;
 
+            void setProxy(const TriggerProxy *);
             void setVersion(const int &);
             void setIsPass(const bool &);
 

@@ -30,6 +30,9 @@ Trigger::Trigger(const Trigger &trigger) throw():
 {
     clog << "Trigger::Trigger(const Trigger &)" << endl;
     _proxy = trigger._proxy;
+
+    if (_proxy)
+        _proxy._trigger = this;
 }
 
 Trigger &Trigger::operator=(const Trigger &trigger)
@@ -37,6 +40,9 @@ Trigger &Trigger::operator=(const Trigger &trigger)
     clog << "Trigger::operator=" << endl;
 
     _proxy = trigger._proxy;
+    if (_proxy)
+        _proxy._trigger = this;
+
     _version = trigger.version();
     _isPass = trigger;
 
@@ -51,6 +57,14 @@ int Trigger::version() const
 Trigger::operator bool() const
 {
     return _isPass;
+}
+
+void Trigger::setProxy(const TriggerProxy *proxy)
+{
+    if (_proxy)
+        _proxy._filter = 0;
+
+    _proxy = proxy;
 }
 
 void Trigger::setVersion(const int &version)

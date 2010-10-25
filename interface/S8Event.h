@@ -48,8 +48,9 @@ namespace s8
             PrimaryVertexCollection &primaryVertices();
             const PrimaryVertexCollection &primaryVertices() const;
 
+            // Trigger Proxies should be used by users.
+            //
             TriggerCollection &triggers();
-            const TriggerCollection &triggers() const;
 
         private:
             EventID  _id;
@@ -127,11 +128,6 @@ namespace s8
     }
 
     inline TriggerCollection &Event::triggers()
-    {
-        return _triggers;
-    }
-
-    inline const TriggerCollection &Event::triggers() const
     {
         return _triggers;
     }
