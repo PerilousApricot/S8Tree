@@ -11,30 +11,32 @@
 
 namespace s8
 {
-    struct HLT
-    {
-        enum{
-            BTagMu_Jet10U,
-            BTagMu_Jet20U,
-            BTagMu_DiJet20U
-        };
-    };
-
     class Trigger
     {
         public:
+            enum HLT
+            {
+                Undefined,
+                BTagMu_Jet10U,
+                BTagMu_Jet20U,
+                BTagMu_DiJet20U
+            };
+
             Trigger() throw();
 
+            HLT hlt() const;
             int version() const;
 
             virtual operator bool() const;
 
+            void setHLT(const HLT &);
             void setVersion(const int &);
             void setIsPass(const bool &);
 
         private:
-            int           _version;
-            bool          _isPass;
+            HLT  _hlt;
+            int  _version;
+            bool _isPass;
     };
 }
 
