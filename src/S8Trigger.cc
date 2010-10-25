@@ -39,6 +39,8 @@ Trigger &Trigger::operator=(const Trigger &trigger)
     _proxy = trigger._proxy;
     _version = trigger.version();
     _isPass = trigger;
+
+    return *this;
 }
 
 int Trigger::version() const

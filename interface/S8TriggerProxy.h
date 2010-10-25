@@ -13,6 +13,8 @@
 
 namespace s8
 {
+    class Trigger;
+
     class TriggerProxy
     {
         public:
