@@ -11,6 +11,8 @@
 
 namespace s8
 {
+    // Currently TreeInfo is not used.
+    //
     class Version
     {
         public:
