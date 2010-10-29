@@ -18,6 +18,7 @@ using s8::Trigger;
 Trigger::Trigger() throw():
     _hlt(Undefined),
     _version(1),
+    _prescale(1),
     _isPass(false)
 {
 }
@@ -30,6 +31,11 @@ Trigger::HLT Trigger::hlt() const
 int Trigger::version() const
 {
     return _version;
+}
+
+int Trigger::prescale() const
+{
+    return _prescale;
 }
 
 Trigger::operator bool() const
@@ -60,6 +66,14 @@ void Trigger::setVersion(const int &version)
         throw runtime_error("Version can not be negative");
 
     _version = version;
+}
+
+void Trigger::setPrescale(const int &prescale)
+{
+    if (0 > prescale)
+        throw runtime_error("Negative Prescale supplied");
+
+    _prescale = prescale;
 }
 
 void Trigger::setIsPass(const bool &isPass)

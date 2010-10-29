@@ -26,16 +26,19 @@ namespace s8
 
             HLT hlt() const;
             int version() const;
+            int prescale() const;
 
             virtual operator bool() const;
 
             void setHLT(const HLT &);
             void setVersion(const int &);
+            void setPrescale(const int &);
             void setIsPass(const bool &);
 
         private:
             HLT  _hlt;
             int  _version;
+            int  _prescale;
             bool _isPass;
     };
 }
