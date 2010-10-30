@@ -19,7 +19,9 @@ namespace s8
                 Undefined,
                 BTagMu_Jet10U,
                 BTagMu_Jet20U,
-                BTagMu_DiJet20U
+                BTagMu_DiJet10U,
+                BTagMu_DiJet20U,
+                BTagMu_DiJet20U_Mu5
             };
 
             Trigger() throw();
