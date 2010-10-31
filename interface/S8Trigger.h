@@ -21,7 +21,9 @@ namespace s8
                 BTagMu_Jet20U,
                 BTagMu_DiJet10U,
                 BTagMu_DiJet20U,
-                BTagMu_DiJet20U_Mu5
+                BTagMu_DiJet20U_Mu5,
+                BTagMu_DiJet30U,
+                BTagMu_DiJet30U_Mu5
             };
 
             Trigger() throw();

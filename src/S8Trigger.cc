@@ -52,7 +52,9 @@ void Trigger::setHLT(const HLT &hlt)
         case BTagMu_Jet20U:       // Fall through
         case BTagMu_DiJet10U:     // Fall through
         case BTagMu_DiJet20U:     // Fall through
-        case BTagMu_DiJet20U_Mu5: break;
+        case BTagMu_DiJet20U_Mu5: // Fall through
+        case BTagMu_DiJet30U:     // Fall through
+        case BTagMu_DiJet30U_Mu5: break;
         default: throw runtime_error("Unsupported Trigger");
     }
 
