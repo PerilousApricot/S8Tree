@@ -1,5 +1,6 @@
-#include <utility>
+#include <map>
 #include <vector>
+#include <cstddef>
 
 #include "interface/S8EventID.h"
 #include "interface/S8GenEvent.h"
@@ -10,6 +11,7 @@
 #include "interface/S8Trigger.h"
 #include "interface/S8Event.h"
 #include "interface/S8TreeInfo.h"
+#include "interface/S8TriggerCenter.h"
 
 #ifdef __CINT__
 
@@ -31,8 +33,10 @@
 #pragma link C++ class std::vector<s8::Jet>;
 #pragma link C++ class std::vector<s8::PrimaryVertex>;
 #pragma link C++ class std::vector<s8::Trigger>;
+#pragma link C++ class std::map<std::size_t, std::string>;
 
 #pragma link C++ class s8::Event+;
 #pragma link C++ class s8::TreeInfo+;
+#pragma link C++ class s8::TriggerCenter+;
 
 #endif
