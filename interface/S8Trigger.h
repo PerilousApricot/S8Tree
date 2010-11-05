@@ -9,41 +9,31 @@
 #ifndef S8_TRIGGER
 #define S8_TRIGGER
 
+#include <cstddef>
+
 namespace s8
 {
     class Trigger
     {
         public:
-            enum HLT
-            {
-                Undefined,
-                BTagMu_Jet10U,
-                BTagMu_Jet20U,
-                BTagMu_DiJet10U,
-                BTagMu_DiJet20U,
-                BTagMu_DiJet20U_Mu5,
-                BTagMu_DiJet30U,
-                BTagMu_DiJet30U_Mu5
-            };
-
             Trigger() throw();
 
-            HLT hlt() const;
+            std::size_t hash() const;
             int version() const;
             int prescale() const;
 
             virtual operator bool() const;
 
-            void setHLT(const HLT &);
+            void setHash(const std::size_t &);
             void setVersion(const int &);
             void setPrescale(const int &);
             void setIsPass(const bool &);
 
         private:
-            HLT  _hlt;
-            int  _version;
-            int  _prescale;
-            bool _isPass;
+            std::size_t _hash;
+            char        _version;
+            int         _prescale;
+            bool        _isPass;
     };
 }
 

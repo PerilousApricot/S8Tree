@@ -16,16 +16,16 @@ using std::runtime_error;
 using s8::Trigger;
 
 Trigger::Trigger() throw():
-    _hlt(Undefined),
+    _hash(0),
     _version(1),
     _prescale(1),
     _isPass(false)
 {
 }
 
-Trigger::HLT Trigger::hlt() const
+std::size_t Trigger::hash() const
 {
-    return _hlt;
+    return _hash;
 }
 
 int Trigger::version() const
@@ -43,27 +43,14 @@ Trigger::operator bool() const
     return _isPass;
 }
 
-void Trigger::setHLT(const HLT &hlt)
+void Trigger::setHash(const std::size_t &hash)
 {
-    switch(hlt)
-    {
-        case Undefined:           // Fall through
-        case BTagMu_Jet10U:       // Fall through
-        case BTagMu_Jet20U:       // Fall through
-        case BTagMu_DiJet10U:     // Fall through
-        case BTagMu_DiJet20U:     // Fall through
-        case BTagMu_DiJet20U_Mu5: // Fall through
-        case BTagMu_DiJet30U:     // Fall through
-        case BTagMu_DiJet30U_Mu5: break;
-        default: throw runtime_error("Unsupported Trigger");
-    }
-
-    _hlt = hlt;
+    _hash = hash;
 }
 
 void Trigger::setVersion(const int &version)
 {
-    if (Undefined == _hlt)
+    if (0 == _hash)
         throw runtime_error("Trigger is undefined");
 
     if (1 > version)
@@ -82,7 +69,7 @@ void Trigger::setPrescale(const int &prescale)
 
 void Trigger::setIsPass(const bool &isPass)
 {
-    if (Undefined == _hlt)
+    if (0 == _hash)
         throw runtime_error("Trigger is undefined");
 
     _isPass = isPass;
