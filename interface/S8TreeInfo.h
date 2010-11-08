@@ -10,6 +10,9 @@
 #define S8_TREEINFO
 
 #include <ostream>
+#include <utility>
+
+#include <Rtypes.h>
 
 namespace s8
 {
@@ -18,27 +21,36 @@ namespace s8
     class Version
     {
         public:
-            Version(const int &major, const int &minor) throw();
+            typedef std::pair<int, int> VersionPair; // <major, minor>
+
+            Version() throw();
 
             operator double() const;
 
-            int major() const;
-            int minor() const;
+            VersionPair operator()() const;
+
+            void set(const VersionPair &);
 
         private:
-            int _major;
-            int _minor;
+            std::pair<int, int> _version;
     };
 
-    std::ostream &operator<<(std::ostream &, const Version &);
+    // Default Logical operators on Versions should work b/c version can be
+    // converted to the double
 
     class TreeInfo
     {
         public:
             TreeInfo() throw();
 
+            void merge(const TreeInfo &);
+
+            Version version() const;
+
         private:
-            static Version _version;
+            Version _version;
+
+            ClassDef(TreeInfo, 1);
     };
 }
 
