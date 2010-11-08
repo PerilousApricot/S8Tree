@@ -27,6 +27,7 @@
 #pragma link C++ class s8::Jet+;
 #pragma link C++ class s8::Lepton+;
 #pragma link C++ class s8::PrimaryVertex+;
+#pragma link C++ class s8::Version+;
 #pragma link C++ class s8::Trigger+;
 
 #pragma link C++ class std::vector<s8::Lepton>;
