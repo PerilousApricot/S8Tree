@@ -12,11 +12,12 @@
 #include <map>
 #include <cstddef>
 
+#include <TObject.h>
 #include <Rtypes.h>
 
 namespace s8
 {
-    class TriggerCenter
+    class TriggerCenter: public TObject
     {
         public:
             typedef std::size_t Hash;

@@ -12,6 +12,7 @@
 #include <ostream>
 #include <utility>
 
+#include <TObject.h>
 #include <Rtypes.h>
 
 namespace s8
@@ -38,7 +39,7 @@ namespace s8
     // Default Logical operators on Versions should work b/c version can be
     // converted to the double
 
-    class TreeInfo
+    class TreeInfo: public TObject
     {
         public:
             TreeInfo() throw();
