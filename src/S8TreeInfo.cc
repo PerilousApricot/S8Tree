@@ -27,14 +27,6 @@ Version::Version() throw():
 {
 }
 
-Version::operator double() const
-{
-    std::ostringstream version;
-    version << _version.first << '.' << _version.second;
-
-    return lexical_cast<double>(version.str());
-}
-
 Version::VersionPair Version::operator()() const
 {
     return _version;
@@ -48,6 +40,41 @@ void Version::set(const VersionPair &version)
         throw runtime_error("Failed to set Version: version can not be negative");
 
     _version = version;
+}
+
+std::ostream &s8::operator<<(std::ostream &out, const Version &version)
+{
+    return out << version().first << "." << version().second;
+}
+
+bool s8::operator==(const Version &v1, const Version &v2)
+{
+    return v1() == v2();
+}
+
+bool s8::operator!=(const Version &v1, const Version &v2)
+{
+    return v1() != v2();
+}
+
+bool s8::operator <(const Version &v1, const Version &v2)
+{
+    return v1() < v2();
+}
+
+bool s8::operator<=(const Version &v1, const Version &v2)
+{
+    return v1() <= v2();
+}
+
+bool s8::operator >(const Version &v1, const Version &v2)
+{
+    return v1() > v2();
+}
+
+bool s8::operator>=(const Version &v1, const Version &v2)
+{
+    return v1() >= v2();
 }
 
 

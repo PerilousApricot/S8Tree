@@ -26,8 +26,6 @@ namespace s8
 
             Version() throw();
 
-            operator double() const;
-
             VersionPair operator()() const;
 
             void set(const VersionPair &);
@@ -36,8 +34,14 @@ namespace s8
             std::pair<int, int> _version;
     };
 
-    // Default Logical operators on Versions should work b/c version can be
-    // converted to the double
+    std::ostream &operator<<(std::ostream &, const Version &);
+
+    bool operator==(const Version &, const Version &);
+    bool operator!=(const Version &, const Version &);
+    bool operator <(const Version &, const Version &);
+    bool operator<=(const Version &, const Version &);
+    bool operator >(const Version &, const Version &);
+    bool operator>=(const Version &, const Version &);
 
     class TreeInfo: public TObject
     {
