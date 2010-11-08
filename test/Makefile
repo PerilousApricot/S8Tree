@@ -7,7 +7,7 @@ SUBSYS   =
 CLEANS   = $(addprefix CLN_,$(SUBSYS))
 
 # List of programs with main functions to be filtered out of objects
-PROGS    = main
+PROGS    = main main_version
 
 LIB		 = 
 
