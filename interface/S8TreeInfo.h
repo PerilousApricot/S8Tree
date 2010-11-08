@@ -9,6 +9,8 @@
 #ifndef S8_TREEINFO
 #define S8_TREEINFO
 
+#include <ostream>
+
 namespace s8
 {
     // Currently TreeInfo is not used.
@@ -28,29 +30,15 @@ namespace s8
             int _minor;
     };
 
+    std::ostream &operator<<(std::ostream &, const Version &);
+
     class TreeInfo
     {
         public:
-            enum Input { Undefined,
-                         BTau,
-                         TTbar,
-                         BBbar,
-                         InclusiveMu5_Pt15,
-                         InclusiveMu5_Pt30,
-                         InclusiveMu5_Pt50,
-                         InclusiveMu5_Pt150,
-                         ppMuX };
-
             TreeInfo() throw();
-
-            Input input() const;
-
-            void setInput(const Input &);
 
         private:
             static Version _version;
-
-            Input _input;
     };
 }
 

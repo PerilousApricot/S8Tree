@@ -13,6 +13,7 @@
 
 #include "interface/S8TreeInfo.h"
 
+using std::ostream;
 using std::runtime_error;
 
 using boost::lexical_cast;
@@ -20,7 +21,7 @@ using boost::lexical_cast;
 using s8::TreeInfo;
 using s8::Version;
 
-Version TreeInfo::_version(4, 3);
+Version TreeInfo::_version(5, 0);
 
 Version::Version(const int &major, const int &minor) throw():
     _major(major),
@@ -31,7 +32,7 @@ Version::Version(const int &major, const int &minor) throw():
 Version::operator double() const
 {
     std::ostringstream version;
-    version << _major << '.' << _minor;
+    version << *this;
 
     return lexical_cast<double>(version.str());
 }
@@ -46,33 +47,13 @@ int Version::minor() const
     return _minor;
 }
 
-
-
-TreeInfo::TreeInfo() throw():
-    _input(Undefined)
+ostream &s8::operator<<(ostream &out, const Version &version)
 {
+    return out << version.major() << "." << version.minor();
 }
 
-TreeInfo::Input TreeInfo::input() const
-{
-    return _input;
-}
 
-void TreeInfo::setInput(const Input &input)
-{
-    switch(input)
-    {
-        case Undefined:          // Fall through
-        case BTau:               // Fall through
-        case TTbar:              // Fall through
-        case BBbar:              // Fall through
-        case InclusiveMu5_Pt30:  // Fall through
-        case InclusiveMu5_Pt50:  // Fall through
-        case InclusiveMu5_Pt150: // Fall through
-        case ppMuX:              break;
 
-        default:
-            throw runtime_error("Unsupported Input type specified");
-    }
-    _input = input;
+TreeInfo::TreeInfo() throw()
+{
 }
