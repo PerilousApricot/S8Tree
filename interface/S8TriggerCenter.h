@@ -33,7 +33,7 @@ namespace s8
         private:
             TriggerMap _triggers;
 
-        ClassDef(TriggerCenter, 1);
+            ClassDef(TriggerCenter, 1);
     };
 }
 
