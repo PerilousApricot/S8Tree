@@ -16,6 +16,8 @@ namespace s8
     class Trigger
     {
         public:
+            typedef std::size_t Hash;
+
             Trigger() throw();
 
             std::size_t hash() const;
