@@ -42,7 +42,7 @@ lib: $(LIB)
 # Generate Dictionaries
 $(CINTS): $(HEADS)
 	@echo "[+] Generating ROOT Dictionaries ..."
-	rootcint $@ -c -I../ $(HEADS) $(subst Dict.cxx,LinkDef.h,$(subst dic,./src,$@))
+	rootcint $@ -c -I../ $(filter-out %Tools.h,$(HEADS)) $(subst Dict.cxx,LinkDef.h,$(subst dic,./src,$@))
 	@echo
 
 $(CINTOBJS): $(CINTS)
