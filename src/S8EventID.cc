@@ -28,6 +28,21 @@ void EventID::reset()
     _event = 0;
 }
 
+int EventID::run() const
+{
+    return _run;
+}
+
+int EventID::lumiBlock() const
+{
+    return _lumiBlock;
+}
+
+int EventID::event() const
+{
+    return _event;
+}
+
 void EventID::setRun(const int &run)
 {
     if (run < 0)

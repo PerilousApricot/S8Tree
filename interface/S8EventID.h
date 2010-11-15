@@ -33,21 +33,6 @@ namespace s8
             int _lumiBlock;
             int _event;
     };
-
-    inline int EventID::run() const
-    {
-        return _run;
-    }
-
-    inline int EventID::lumiBlock() const
-    {
-        return _lumiBlock;
-    }
-
-    inline int EventID::event() const
-    {
-        return _event;
-    }
 }
 
 #endif
