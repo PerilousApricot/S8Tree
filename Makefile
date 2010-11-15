@@ -1,6 +1,6 @@
 CCC      = g++
 
-LIB		 = libTree.so
+LIB		 = libS8Tree.so
 
 # Flags used in compilation
 CXXFLAGS = -Wall -fPIC -I./ -I${ROOTSYS}/include -I${BOOST_ROOT}/include
