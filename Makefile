@@ -1,12 +1,6 @@
 CCC      = g++
 
-# Subsystems that have compilable libraries
-SUBSYS   =
-
-# Special rules to clean each subsystem
-CLEANS   = $(addprefix CLN_,$(SUBSYS))
-
-LIB		 = libS8Tree.so
+LIB		 = libTree.so
 
 # Flags used in compilation
 CXXFLAGS = -Wall -fPIC -I./ -I${ROOTSYS}/include -I${BOOST_ROOT}/include
@@ -21,12 +15,11 @@ SRCS     = $(wildcard ./src/*.cc)
 OBJS     = $(foreach obj,$(addprefix ./obj/,$(patsubst %.cc,%.o,$(notdir $(SRCS)))),$(obj))
 CINTS    = $(foreach dic,$(addprefix ./dic/,$(patsubst %.h,%.cxx,$(notdir $(DICS)))),$(subst LinkDef,Dict,$(dic)))
 CINTOBJS = $(foreach obj,$(subst ./dic/,,$(patsubst %.cxx,%.o,$(CINTS))),$(addprefix ./obj/,$(obj)))
-LIBS     = $(addprefix -l,$(SUBSYS))
 
 # Rules to be always executed: empty ones
 .PHONY: $(PROGS)
 
-all: $(SUBSYS) $(OBJS) $(PROGS) lib
+all: $(OBJS) $(PROGS) lib
 
 help:
 	@echo "make <rule>"
@@ -42,7 +35,7 @@ lib: $(LIB)
 # Generate Dictionaries
 $(CINTS): $(HEADS)
 	@echo "[+] Generating ROOT Dictionaries ..."
-	rootcint $@ -c -I../ $(filter-out %Tools.h,$(HEADS)) $(subst Dict.cxx,LinkDef.h,$(subst dic,./src,$@))
+	rootcint $@ -c -I./ $(filter-out %Tools.h,$(HEADS)) $(subst Dict.cxx,LinkDef.h,$(subst dic,./src,$@))
 	@echo
 
 $(CINTOBJS): $(CINTS)
@@ -59,12 +52,8 @@ $(OBJS): $(SRCS) $(HEADS)
 
 $(LIB): $(CINTOBJS) $(OBJS)
 	@echo "[+] Creating shared libraries ..."
-	$(CCC) $(LDFLAGS) -o $(addprefix ../lib/,$@) $(OBJS) $(CINTOBJS) 
+	$(CCC) $(LDFLAGS) -o $(addprefix ./lib/,$@) $(OBJS) $(CINTOBJS) 
 	@echo
-
-# Call top level Makefile to compile subsystem this code depends on
-$(SUBSYS):
-	$(MAKE) -C ../ $@
 
 # This rule will clean libraries also code depend on. Run:
 #     make cleanall
@@ -77,4 +66,4 @@ $(CLEANS):
 clean:
 	rm -f ./obj/*.o
 	rm -f ./dic/*.{h,cxx}
-	rm -f $(addprefix ../lib/,$(LIB))
+	rm -f $(addprefix ./lib/,$(LIB))
