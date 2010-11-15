@@ -19,6 +19,11 @@ GenEvent::GenEvent() throw():
 {
 }
 
+void GenEvent::reset()
+{
+    _ptHat = 0;
+}
+
 void GenEvent::setPtHat(const double &ptHat)
 {
     if (ptHat < 0)

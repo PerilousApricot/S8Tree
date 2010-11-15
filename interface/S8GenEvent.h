@@ -16,6 +16,8 @@ namespace s8
         public:
             GenEvent() throw();
 
+            void reset();
+
             double ptHat() const;
 
 
