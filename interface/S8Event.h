@@ -9,8 +9,8 @@
 #ifndef S8_EVENT
 #define S8_EVENT
 
-#include "interface/S8EventID.h"
-#include "interface/S8GenEvent.h"
+#include <vector>
+
 #include "interface/S8Jet.h"
 #include "interface/S8Lepton.h"
 #include "interface/S8PrimaryVertex.h"
@@ -23,18 +23,22 @@ namespace s8
     typedef std::vector<PrimaryVertex> PrimaryVertexCollection;
     typedef std::vector<Trigger>       TriggerCollection;
 
+    class EventID;
+    class GenEvent;
+
     class Event
     {
         public:
             Event() throw();
+            ~Event() throw();
 
             void reset();
 
-            EventID &id();
-            const EventID &id() const;
+            EventID *id();
+            const EventID *id() const;
 
-            GenEvent &gen();
-            const GenEvent &gen() const;
+            GenEvent *gen();
+            const GenEvent *gen() const;
 
             JetCollection &jets();
             const JetCollection &jets() const;
@@ -52,8 +56,8 @@ namespace s8
             const TriggerCollection &triggers() const;
 
         private:
-            EventID  _id;
-            GenEvent _gen;
+            EventID  *_id;
+            GenEvent *_gen;
 
             JetCollection           _jets;
             LeptonCollection        _muons;
@@ -61,30 +65,6 @@ namespace s8
             PrimaryVertexCollection _primaryVertices;
             TriggerCollection       _triggers;
     };
-
-    inline Event::Event() throw()
-    {
-    }
-
-    inline EventID &Event::id()
-    {
-        return _id;
-    }
-
-    inline const EventID &Event::id() const
-    {
-        return _id;
-    }
-
-    inline GenEvent &Event::gen()
-    {
-        return _gen;
-    }
-
-    inline const GenEvent &Event::gen() const
-    {
-        return _gen;
-    }
 
     inline JetCollection &Event::jets()
     {
