@@ -1,3 +1,4 @@
+#include "interface/S8Plug.h"
 #include "interface/S8Event.h"
 #include "interface/S8TreeInfo.h"
 #include "interface/S8TriggerCenter.h"
@@ -10,6 +11,7 @@
 
 #pragma link C++ namespace s8;
 
+#pragma link C++ class s8::Plug+;
 #pragma link C++ class s8::EventID+;
 #pragma link C++ class s8::GenEvent+;
 #pragma link C++ class s8::GenParticle+;
