@@ -24,6 +24,11 @@ void GenEvent::reset()
     _ptHat = 0;
 }
 
+double GenEvent::ptHat() const
+{
+    return _ptHat;
+}
+
 void GenEvent::setPtHat(const double &ptHat)
 {
     if (ptHat < 0)

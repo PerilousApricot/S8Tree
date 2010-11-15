@@ -27,11 +27,6 @@ namespace s8
         private:
             double _ptHat;
     };
-
-    inline double GenEvent::ptHat() const
-    {
-        return _ptHat;
-    }
 }
 
 #endif
