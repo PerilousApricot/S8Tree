@@ -16,6 +16,8 @@ namespace s8
         public:
             EventID() throw();
 
+            void reset();
+
             int run() const;
             int lumiBlock() const;
             int event() const;

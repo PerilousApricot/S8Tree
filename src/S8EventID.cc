@@ -21,6 +21,13 @@ EventID::EventID() throw():
 {
 }
 
+void EventID::reset()
+{
+    _run = 0;
+    _lumiBlock = 0;
+    _event = 0;
+}
+
 void EventID::setRun(const int &run)
 {
     if (run < 0)
