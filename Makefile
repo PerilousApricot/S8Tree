@@ -19,7 +19,7 @@ CINTOBJS = $(foreach obj,$(subst ./dic/,,$(patsubst %.cxx,%.o,$(CINTS))),$(addpr
 # Rules to be always executed: empty ones
 .PHONY: $(PROGS)
 
-all: $(OBJS) $(PROGS) lib
+all: dict $(OBJS) $(PROGS) lib
 
 help:
 	@echo "make <rule>"
@@ -31,6 +31,8 @@ help:
 	@echo
 
 lib: $(LIB)
+
+dict: $(CINTS) $(CINTOBJS)
 
 # Generate Dictionaries
 $(CINTS): $(HEADS)
