@@ -9,28 +9,31 @@
 #ifndef S8_EVENT
 #define S8_EVENT
 
+#include <memory>
 #include <vector>
-
-#include "interface/S8Jet.h"
-#include "interface/S8Lepton.h"
-#include "interface/S8PrimaryVertex.h"
-#include "interface/S8Trigger.h"
 
 namespace s8
 {
-    typedef std::vector<Jet>           JetCollection;
-    typedef std::vector<Lepton>        LeptonCollection;
-    typedef std::vector<PrimaryVertex> PrimaryVertexCollection;
-    typedef std::vector<Trigger>       TriggerCollection;
-
     class EventID;
     class GenEvent;
+    class Jet;
+    class Lepton;
+    class PrimaryVertex;
+    class Trigger;
 
     class Event
     {
         public:
+            typedef std::vector<Jet *>           Jets;
+            typedef std::vector<Lepton *>        Leptons;
+            typedef std::vector<PrimaryVertex *> PrimaryVertices;
+            typedef std::vector<Trigger *>       Triggers;
+
             Event() throw();
             ~Event() throw();
+
+            Event(const Event &);
+            Event &operator =(const Event &);
 
             void reset();
 
@@ -40,81 +43,40 @@ namespace s8
             GenEvent *gen();
             const GenEvent *gen() const;
 
-            JetCollection &jets();
-            const JetCollection &jets() const;
 
-            LeptonCollection &muons();
-            const LeptonCollection &muons() const;
 
-            LeptonCollection &electrons();
-            const LeptonCollection &electrons() const;
+            // Collections
+            //
+            Jets &jets();
+            const Jets &jets() const;
 
-            PrimaryVertexCollection &primaryVertices();
-            const PrimaryVertexCollection &primaryVertices() const;
+            Leptons &muons();
+            const Leptons &muons() const;
 
-            TriggerCollection &triggers();
-            const TriggerCollection &triggers() const;
+            Leptons &electrons();
+            const Leptons &electrons() const;
+
+            PrimaryVertices &primaryVertices();
+            const PrimaryVertices &primaryVertices() const;
+
+            Triggers &triggers();
+            const Triggers &triggers() const;
 
         private:
-            EventID  *_id;
-            GenEvent *_gen;
+            void cleanUpMemory();
+            void cloneCollections(const Event &);
 
-            JetCollection           _jets;
-            LeptonCollection        _muons;
-            LeptonCollection        _electrons;
-            PrimaryVertexCollection _primaryVertices;
-            TriggerCollection       _triggers;
+            bool _cleanUpMemory;
+
+            std::auto_ptr<EventID>  _id;
+            std::auto_ptr<GenEvent> _gen;
+
+            Jets            _jets;
+            Leptons         _muons;
+            Leptons         _electrons;
+            PrimaryVertices _primaryVertices;
+            Triggers        _triggers;
     };
-
-    inline JetCollection &Event::jets()
-    {
-        return _jets;
-    }
-
-    inline const JetCollection &Event::jets() const
-    {
-        return _jets;
-    }
-
-    inline LeptonCollection &Event::muons()
-    {
-        return _muons;
-    }
-
-    inline const LeptonCollection &Event::muons() const
-    {
-        return _muons;
-    }
-
-    inline LeptonCollection &Event::electrons()
-    {
-        return _electrons;
-    }
-
-    inline const LeptonCollection &Event::electrons() const
-    {
-        return _electrons;
-    }
-
-    inline PrimaryVertexCollection &Event::primaryVertices()
-    {
-        return _primaryVertices;
-    }
-
-    inline const PrimaryVertexCollection &Event::primaryVertices() const
-    {
-        return _primaryVertices;
-    }
-
-    inline TriggerCollection &Event::triggers()
-    {
-        return _triggers;
-    }
-
-    inline const TriggerCollection &Event::triggers() const
-    {
-        return _triggers;
-    }
 }
 
 #endif
