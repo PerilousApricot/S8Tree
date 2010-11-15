@@ -9,7 +9,9 @@
 #ifndef S8_PRIMARY_VERTEX
 #define S8_PRIMARY_VERTEX
 
-#include <TVector3.h>
+#include <memory>
+
+class TVector3;
 
 namespace s8
 {
@@ -18,8 +20,13 @@ namespace s8
         public:
             PrimaryVertex() throw();
 
-            TVector3 &vertex();
-            const TVector3 &vertex() const;
+            PrimaryVertex(const PrimaryVertex &);
+            PrimaryVertex &operator =(const PrimaryVertex &);
+
+            void reset();
+
+            TVector3 *vertex();
+            const TVector3 *vertex() const;
 
             double ndof() const;
             double rho() const;
@@ -30,38 +37,11 @@ namespace s8
             void setRho(const double &);
 
         private:
-            TVector3 _vertex;
+            std::auto_ptr<TVector3> _vertex;
 
             double   _ndof;
             double   _rho;
     };
-
-    inline TVector3 &PrimaryVertex::vertex()
-    {
-        return _vertex;
-    }
-
-    inline const TVector3 &PrimaryVertex::vertex() const
-    {
-        return _vertex;
-    }
-
-    inline double PrimaryVertex::ndof() const
-    {
-        return _ndof;
-    }
-
-    inline double PrimaryVertex::rho() const
-    {
-        return _rho;
-    }
-
-
-
-    inline  void PrimaryVertex::setRho(const double &rho)
-    {
-        _rho = rho;
-    }
 }
 
 #endif
