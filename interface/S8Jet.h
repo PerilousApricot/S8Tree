@@ -9,9 +9,9 @@
 #ifndef S8_JET
 #define S8_JET
 
-#include <vector>
+#include <memory>
 
-#include <TLorentzVector.h>
+class TLorentzVector;
 
 namespace s8
 {
@@ -19,18 +19,22 @@ namespace s8
     {
         public:
             // Different BTaggers specification (to speed up search for
-            // b-tagger). BTAGS is only for internal use. Any attempt to
-            // use it outside will raise exception.
+            // b-tagger). BTAGS are only for internal use.
             //
             enum BTag { TCHE, TCHP, JP, SSV, SSVHE, SSVHP, BTAGS};
 
             Jet() throw();
 
+            Jet(const Jet &);
+            Jet &operator =(const Jet &);
+
+            void reset();
+
             int flavour() const;
             int tracks() const;
 
-            TLorentzVector &p4();
-            const TLorentzVector &p4() const;
+            TLorentzVector *p4();
+            const TLorentzVector *p4() const;
 
             double btag(const BTag &) const;
 
@@ -45,54 +49,13 @@ namespace s8
             int _flavour;
             int _tracks;
 
-            typedef std::vector<double> BTagCollection;
+            std::auto_ptr<TLorentzVector> _p4;
 
-            TLorentzVector _p4;
-            BTagCollection _btag;
+            // Low level array is used instead of vector to speed up
+            // compilation
+            //
+            double _btag[BTAGS];
     };
-
-    inline int Jet::flavour() const
-    {
-        return _flavour;
-    }
-
-    inline int Jet::tracks() const
-    {
-        return _tracks;
-    }
-
-    inline TLorentzVector &Jet::p4()
-    {
-        return _p4;
-    }
-
-    inline const TLorentzVector &Jet::p4() const
-    {
-        return _p4;
-    }
-
-    inline double Jet::btag(const BTag &tag) const
-    {
-        // out_of_range exception will be raised if wrong BTag is specified.
-        // BTAGS will be treated as ERROR
-        //
-        return _btag.at(tag);
-    }
-
-
-
-    inline void Jet::setFlavour(const int &flavour)
-    {
-        _flavour = flavour;
-    }
-
-    inline void Jet::setBTag(const BTag &tag, const double &value)
-    {
-        // out_of_range exception will be raised if wrong BTag is specified.
-        // BTAGS will be treated as Error.
-        //
-        _btag.at(tag) = value;
-    }
 }
 
 #endif
