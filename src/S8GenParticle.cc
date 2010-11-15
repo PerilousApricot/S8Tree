@@ -6,6 +6,9 @@
  * Copyright 2010, All rights reserved
  */
 
+#include <TLorentzVector.h>
+#include <TVector3.h>
+
 #include "interface/S8GenParticle.h"
 
 using s8::GenParticle;
@@ -14,4 +17,77 @@ GenParticle::GenParticle() throw():
     _id(0),
     _parentId(0)
 {
+    _p4.reset(new TLorentzVector());
+    _vertex.reset(new TVector3());
+}
+
+GenParticle::GenParticle(const GenParticle &particle):
+    _id(particle.id()),
+    _parentId(particle.parentId())
+{
+    _p4.reset(new TLorentzVector(*particle.p4()));
+    _vertex.reset(new TVector3(*particle.vertex()));
+}
+
+GenParticle &GenParticle::operator =(const GenParticle &particle)
+{
+    _id = particle.id();
+    _parentId = particle.parentId();
+
+    *_p4 = *particle.p4();
+    *_vertex = *particle.vertex();
+
+    return *this;
+}
+
+void GenParticle::reset()
+{
+    _id = 0;
+    _parentId = 0;
+
+    _p4->SetPxPyPzE(0, 0, 0, 0);
+    _vertex->SetXYZ(0, 0, 0);
+}
+
+int GenParticle::id() const
+{
+    return _id;
+}
+
+int GenParticle::parentId() const
+{
+    return _parentId;
+}
+
+TLorentzVector *GenParticle::p4()
+{
+    return _p4.get();
+}
+
+const TLorentzVector *GenParticle::p4() const
+{
+    return _p4.get();
+}
+
+TVector3 *GenParticle::vertex()
+{
+    return _vertex.get();
+}
+
+const TVector3 *GenParticle::vertex() const
+{
+    return _vertex.get();
+}
+
+
+
+
+void GenParticle::setId(const int &id)
+{
+    _id = id;
+}
+
+void GenParticle::setParentId(const int &id)
+{
+    _parentId = id;
 }

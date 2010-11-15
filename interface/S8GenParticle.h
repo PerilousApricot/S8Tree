@@ -9,8 +9,10 @@
 #ifndef S8_GENPARTICLE
 #define S8_GENPARTICLE
 
-#include <TLorentzVector.h>
-#include <TVector3.h>
+#include <memory>
+
+class TLorentzVector;
+class TVector3;
 
 namespace s8
 {
@@ -19,14 +21,21 @@ namespace s8
         public:
             GenParticle() throw();
 
+            // Take care of copying b/c of pointers
+            //
+            GenParticle(const GenParticle &);
+            GenParticle &operator =(const GenParticle &);
+
+            void reset();
+
             int id() const;
             int parentId() const;
 
-            TLorentzVector &p4();
-            const TLorentzVector &p4() const;
+            TLorentzVector *p4();
+            const TLorentzVector *p4() const;
 
-            TVector3 &vertex();
-            const TVector3 &vertex() const;
+            TVector3 *vertex();
+            const TVector3 *vertex() const;
 
 
 
@@ -37,51 +46,9 @@ namespace s8
             int _id;
             int _parentId;
 
-            TLorentzVector  _p4;
-            TVector3        _vertex;
+            std::auto_ptr<TLorentzVector> _p4;
+            std::auto_ptr<TVector3>       _vertex;
     };
-
-    inline int GenParticle::id() const
-    {
-        return _id;
-    }
-
-    inline int GenParticle::parentId() const
-    {
-        return _parentId;
-    }
-
-    inline TLorentzVector &GenParticle::p4()
-    {
-        return _p4;
-    }
-
-    inline const TLorentzVector &GenParticle::p4() const
-    {
-        return _p4;
-    }
-
-    inline TVector3 &GenParticle::vertex()
-    {
-        return _vertex;
-    }
-
-    inline const TVector3 &GenParticle::vertex() const
-    {
-        return _vertex;
-    }
-
-
-
-    inline void GenParticle::setId(const int &id)
-    {
-        _id = id;
-    }
-
-    inline void GenParticle::setParentId(const int &id)
-    {
-        _parentId = id;
-    }
 }
 
 #endif
