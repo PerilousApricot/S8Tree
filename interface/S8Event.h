@@ -37,6 +37,8 @@ namespace s8
 
             void reset();
 
+            void manageMemory(const bool &);
+
             EventID *id();
             const EventID *id() const;
 

@@ -29,8 +29,7 @@ Event::Event() throw():
 
 Event::~Event() throw()
 {
-    if (_cleanUpMemory)
-        cleanUpMemory();
+    cleanUpMemory();
 }
 
 Event::Event(const Event &event):
@@ -44,8 +43,7 @@ Event::Event(const Event &event):
 
 Event &Event::operator =(const Event &event)
 {
-    if (_cleanUpMemory)
-        cleanUpMemory();
+    cleanUpMemory();
 
     *_id = *event.id();
     *_gen = *event.gen();
@@ -60,11 +58,12 @@ void Event::reset()
     _id->reset();
     _gen->reset();
 
-    _jets.clear();
-    _muons.clear();
-    _electrons.clear();
-    _primaryVertices.clear();
-    _triggers.clear();
+    cleanUpMemory();
+}
+
+void Event::manageMemory(const bool &manageMemory)
+{
+    _cleanUpMemory |= manageMemory;
 }
 
 s8::EventID *Event::id()
@@ -145,45 +144,49 @@ const Event::Triggers &Event::triggers() const
 
 void Event::cleanUpMemory()
 {
-    for(Jets::const_iterator jet = _jets.begin();
-        _jets.end() != jet;
-        ++jet)
+    if (_cleanUpMemory)
     {
-        delete *jet;
+        for(Jets::const_iterator jet = _jets.begin();
+            _jets.end() != jet;
+            ++jet)
+        {
+            delete *jet;
+        }
+
+        for(Leptons::const_iterator muon = _muons.begin();
+            _muons.end() != muon;
+            ++muon)
+        {
+            delete *muon;
+        }
+
+        for(Leptons::const_iterator electron = _electrons.begin();
+            _electrons.end() != electron;
+            ++electron)
+        {
+            delete *electron;
+        }
+
+        for(PrimaryVertices::const_iterator primaryVertex =
+                _primaryVertices.begin();
+            _primaryVertices.end() != primaryVertex;
+            ++primaryVertex)
+        {
+            delete *primaryVertex;
+        }
+
+        for(Triggers::const_iterator trigger = _triggers.begin();
+            _triggers.end() != trigger;
+            ++trigger)
+        {
+            delete *trigger;
+        }
     }
+
     _jets.clear();
-
-    for(Leptons::const_iterator muon = _muons.begin();
-        _muons.end() != muon;
-        ++muon)
-    {
-        delete *muon;
-    }
-    _muons.clear();
-
-    for(Leptons::const_iterator electron = _electrons.begin();
-        _electrons.end() != electron;
-        ++electron)
-    {
-        delete *electron;
-    }
     _electrons.clear();
-
-    for(PrimaryVertices::const_iterator primaryVertex =
-            _primaryVertices.begin();
-        _primaryVertices.end() != primaryVertex;
-        ++primaryVertex)
-    {
-        delete *primaryVertex;
-    }
+    _muons.clear();
     _primaryVertices.clear();
-
-    for(Triggers::const_iterator trigger = _triggers.begin();
-        _triggers.end() != trigger;
-        ++trigger)
-    {
-        delete *trigger;
-    }
     _triggers.clear();
 }
 
