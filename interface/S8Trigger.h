@@ -9,33 +9,31 @@
 #ifndef S8_TRIGGER
 #define S8_TRIGGER
 
-#include <cstddef>
-
 namespace s8
 {
     class Trigger
     {
         public:
-            typedef std::size_t Hash;
+            typedef unsigned int Hash;
 
             Trigger() throw();
 
-            std::size_t hash() const;
+            Hash hash() const;
             int version() const;
             int prescale() const;
 
             virtual operator bool() const;
 
-            void setHash(const std::size_t &);
+            void setHash(const Hash &);
             void setVersion(const int &);
             void setPrescale(const int &);
             void setIsPass(const bool &);
 
         private:
-            std::size_t _hash;
-            char        _version;
-            int         _prescale;
-            bool        _isPass;
+            Hash _hash;
+            char _version;
+            int  _prescale;
+            bool _isPass;
     };
 }
 

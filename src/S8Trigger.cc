@@ -23,7 +23,7 @@ Trigger::Trigger() throw():
 {
 }
 
-std::size_t Trigger::hash() const
+Trigger::Hash Trigger::hash() const
 {
     return _hash;
 }
@@ -43,7 +43,7 @@ Trigger::operator bool() const
     return _isPass;
 }
 
-void Trigger::setHash(const std::size_t &hash)
+void Trigger::setHash(const Hash &hash)
 {
     _hash = hash;
 }
