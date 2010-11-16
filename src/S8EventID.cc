@@ -21,6 +21,10 @@ EventID::EventID() throw():
 {
 }
 
+EventID::~EventID() throw()
+{
+}
+
 void EventID::reset()
 {
     _run = 0;

@@ -15,6 +15,7 @@ namespace s8
     {
         public:
             EventID() throw();
+            ~EventID() throw();
 
             void reset();
 
