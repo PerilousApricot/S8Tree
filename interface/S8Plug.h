@@ -13,6 +13,8 @@
 
 #include <TLorentzVector.h>
 
+#include "interface/S8GenParticle.h"
+
 namespace s8
 {
     class Plug
@@ -20,7 +22,8 @@ namespace s8
         private:
             Plug();
 
-            std::auto_ptr<TLorentzVector> _;
+            std::auto_ptr<TLorentzVector> _1;
+            std::auto_ptr<GenParticle>    _2;
     };
 }
 
