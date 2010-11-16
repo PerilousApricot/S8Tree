@@ -17,7 +17,7 @@ namespace s8
 {
     namespace tools
     {
-        typedef unsigned_int Hash;
+        typedef unsigned int Hash;
 
         typedef boost::hash<std::string> HashGenerator;
 
