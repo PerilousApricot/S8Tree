@@ -10,7 +10,6 @@
 #define S8_TRIGGERCENTER
 
 #include <map>
-#include <cstddef>
 
 #include <TObject.h>
 #include <Rtypes.h>
@@ -20,7 +19,7 @@ namespace s8
     class TriggerCenter: public TObject
     {
         public:
-            typedef std::size_t Hash;
+            typedef unsigned int Hash;
 
             typedef std::map<Hash, std::string> TriggerMap;
 

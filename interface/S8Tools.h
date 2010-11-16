@@ -10,7 +10,6 @@
 #define S8_TOOLS
 
 #include <string>
-#include <cstddef>
 
 #include <boost/functional/hash.hpp>
 
@@ -18,7 +17,7 @@ namespace s8
 {
     namespace tools
     {
-        typedef std::size_t Hash;
+        typedef unsigned_int Hash;
 
         typedef boost::hash<std::string> HashGenerator;
 
