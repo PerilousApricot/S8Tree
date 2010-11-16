@@ -9,8 +9,6 @@
 #ifndef S8_JET
 #define S8_JET
 
-#include <memory>
-
 class TLorentzVector;
 
 namespace s8
@@ -24,6 +22,7 @@ namespace s8
             enum BTag { TCHE, TCHP, JP, SSV, SSVHE, SSVHP, BTAGS};
 
             Jet() throw();
+            ~Jet() throw();
 
             Jet(const Jet &);
             Jet &operator =(const Jet &);
@@ -49,7 +48,7 @@ namespace s8
             int _flavour;
             int _tracks;
 
-            std::auto_ptr<TLorentzVector> _p4;
+            TLorentzVector *_p4;
 
             // Low level array is used instead of vector to speed up
             // compilation

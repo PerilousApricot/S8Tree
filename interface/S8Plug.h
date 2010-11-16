@@ -9,6 +9,7 @@
 #ifndef S8_PLUG
 #define S8_PLUG
 
+/*
 #include <memory>
 #include <utility>
 
@@ -48,5 +49,6 @@ namespace s8
             std::pair<int, int>          _4_1;
     };
 }
+*/
 
 #endif

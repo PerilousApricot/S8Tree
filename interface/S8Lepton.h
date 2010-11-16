@@ -10,7 +10,6 @@
 #define S8_LEPTON
 
 #include <utility>
-#include <memory>
 
 class TLorentzVector;
 class TVector3;
@@ -27,6 +26,7 @@ namespace s8
             typedef std::pair<double, double> ImpactParameter;
 
             Lepton() throw();
+            ~Lepton() throw();
 
             // Take care of copying b/c of pointers
             //
@@ -48,10 +48,10 @@ namespace s8
             const GenParticle *genParticle() const;
 
         private:
-            std::auto_ptr<ImpactParameter> _impactParameter;
-            std::auto_ptr<TLorentzVector>  _p4;
-            std::auto_ptr<TVector3>        _vertex;
-            std::auto_ptr<GenParticle>     _genParticle;
+            ImpactParameter *_impactParameter;
+            TLorentzVector  *_p4;
+            TVector3        *_vertex;
+            GenParticle     *_genParticle;
     };
 }
 

@@ -9,8 +9,6 @@
 #ifndef S8_GENPARTICLE
 #define S8_GENPARTICLE
 
-#include <memory>
-
 class TLorentzVector;
 class TVector3;
 
@@ -20,6 +18,7 @@ namespace s8
     {
         public:
             GenParticle() throw();
+            ~GenParticle() throw();
 
             // Take care of copying b/c of pointers
             //
@@ -46,8 +45,8 @@ namespace s8
             int _id;
             int _parentId;
 
-            std::auto_ptr<TLorentzVector> _p4;
-            std::auto_ptr<TVector3>       _vertex;
+            TLorentzVector *_p4;
+            TVector3       *_vertex;
     };
 }
 

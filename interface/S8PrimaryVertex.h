@@ -19,6 +19,7 @@ namespace s8
     {
         public:
             PrimaryVertex() throw();
+            ~PrimaryVertex() throw();
 
             PrimaryVertex(const PrimaryVertex &);
             PrimaryVertex &operator =(const PrimaryVertex &);
@@ -37,7 +38,7 @@ namespace s8
             void setRho(const double &);
 
         private:
-            std::auto_ptr<TVector3> _vertex;
+            TVector3 *_vertex;
 
             double   _ndof;
             double   _rho;

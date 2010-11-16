@@ -20,14 +20,19 @@ PrimaryVertex::PrimaryVertex() throw():
     _ndof(0),
     _rho(0)
 {
-    _vertex.reset(new TVector3());
+    _vertex = new TVector3();
+}
+
+PrimaryVertex::~PrimaryVertex() throw()
+{
+    delete _vertex;
 }
 
 PrimaryVertex::PrimaryVertex(const PrimaryVertex &vertex):
     _ndof(vertex.ndof()),
     _rho(vertex.rho())
 {
-    _vertex.reset(new TVector3(*vertex.vertex()));
+    _vertex = new TVector3(*vertex.vertex());
 }
 
 PrimaryVertex &PrimaryVertex::operator =(const PrimaryVertex &vertex)
@@ -50,12 +55,12 @@ void PrimaryVertex::reset()
 
 TVector3 *PrimaryVertex::vertex()
 {
-    return _vertex.get();
+    return _vertex;
 }
 
 const TVector3 *PrimaryVertex::vertex() const
 {
-    return _vertex.get();
+    return _vertex;
 }
 
 double PrimaryVertex::ndof() const

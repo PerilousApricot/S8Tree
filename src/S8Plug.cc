@@ -8,8 +8,10 @@
 
 #include "interface/S8Plug.h"
 
+/*
 using s8::Plug;
 
 Plug::Plug()
 {
 }
+*/

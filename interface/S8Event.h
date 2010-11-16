@@ -9,7 +9,6 @@
 #ifndef S8_EVENT
 #define S8_EVENT
 
-#include <memory>
 #include <vector>
 
 namespace s8
@@ -70,8 +69,8 @@ namespace s8
 
             bool _cleanUpMemory;
 
-            std::auto_ptr<EventID>  _id;
-            std::auto_ptr<GenEvent> _gen;
+            EventID  *_id;
+            GenEvent *_gen;
 
             Jets            _jets;
             Leptons         _muons;

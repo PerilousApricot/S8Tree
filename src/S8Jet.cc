@@ -21,7 +21,7 @@ Jet::Jet() throw():
     _flavour(0),
     _tracks(0)
 {
-    _p4.reset(new TLorentzVector());
+    _p4 = new TLorentzVector();
 
     for(int btag = 0; BTAGS > btag; ++btag)
     {
@@ -29,11 +29,16 @@ Jet::Jet() throw():
     }
 }
 
+Jet::~Jet() throw()
+{
+    delete _p4;
+}
+
 Jet::Jet(const Jet &jet):
     _flavour(jet.flavour()),
     _tracks(jet.tracks())
 {
-    _p4.reset(new TLorentzVector(*jet.p4()));
+    _p4 = new TLorentzVector(*jet.p4());
 
     for(int btag = 0; BTAGS > btag; ++btag)
     {
@@ -81,12 +86,12 @@ int Jet::tracks() const
 
 TLorentzVector *Jet::p4()
 {
-    return _p4.get();
+    return _p4;
 }
 
 const TLorentzVector *Jet::p4() const
 {
-    return _p4.get();
+    return _p4;
 }
 
 double Jet::btag(const BTag &tag) const

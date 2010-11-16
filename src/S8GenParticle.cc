@@ -17,16 +17,22 @@ GenParticle::GenParticle() throw():
     _id(0),
     _parentId(0)
 {
-    _p4.reset(new TLorentzVector());
-    _vertex.reset(new TVector3());
+    _p4 = new TLorentzVector();
+    _vertex = new TVector3();
+}
+
+GenParticle::~GenParticle() throw()
+{
+    delete _vertex;
+    delete _p4;
 }
 
 GenParticle::GenParticle(const GenParticle &particle):
     _id(particle.id()),
     _parentId(particle.parentId())
 {
-    _p4.reset(new TLorentzVector(*particle.p4()));
-    _vertex.reset(new TVector3(*particle.vertex()));
+    _p4 = new TLorentzVector(*particle.p4());
+    _vertex = new TVector3(*particle.vertex());
 }
 
 GenParticle &GenParticle::operator =(const GenParticle &particle)
@@ -61,22 +67,22 @@ int GenParticle::parentId() const
 
 TLorentzVector *GenParticle::p4()
 {
-    return _p4.get();
+    return _p4;
 }
 
 const TLorentzVector *GenParticle::p4() const
 {
-    return _p4.get();
+    return _p4;
 }
 
 TVector3 *GenParticle::vertex()
 {
-    return _vertex.get();
+    return _vertex;
 }
 
 const TVector3 *GenParticle::vertex() const
 {
-    return _vertex.get();
+    return _vertex;
 }
 
 

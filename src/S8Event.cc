@@ -23,20 +23,23 @@ using s8::Event;
 Event::Event() throw():
     _cleanUpMemory(false)
 {
-    _id.reset(new EventID());
-    _gen.reset(new GenEvent());
+    _id = new EventID();
+    _gen = new GenEvent();
 }
 
 Event::~Event() throw()
 {
     cleanUpMemory();
+
+    delete _gen;
+    delete _id;
 }
 
 Event::Event(const Event &event):
     _cleanUpMemory(true)
 {
-    _id.reset(new EventID(*event.id()));
-    _gen.reset(new GenEvent(*event.gen()));
+    _id = new EventID(*event.id());
+    _gen = new GenEvent(*event.gen());
 
     cloneCollections(event);
 }
@@ -68,22 +71,22 @@ void Event::manageMemory(const bool &manageMemory)
 
 s8::EventID *Event::id()
 {
-    return _id.get();
+    return _id;
 }
 
 const s8::EventID *Event::id() const
 {
-    return _id.get();
+    return _id;
 }
 
 s8::GenEvent *Event::gen()
 {
-    return _gen.get();
+    return _gen;
 }
 
 const s8::GenEvent *Event::gen() const
 {
-    return _gen.get();
+    return _gen;
 }
 
 

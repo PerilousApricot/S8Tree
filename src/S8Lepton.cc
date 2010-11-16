@@ -17,18 +17,26 @@ using s8::Lepton;
 
 Lepton::Lepton() throw()
 {
-    _impactParameter.reset(new ImpactParameter());
-    _p4.reset(new TLorentzVector());
-    _vertex.reset(new TVector3());
-    _genParticle.reset(new GenParticle());
+    _impactParameter = new ImpactParameter();
+    _p4 = new TLorentzVector();
+    _vertex = new TVector3();
+    _genParticle = new GenParticle();
+}
+
+Lepton::~Lepton() throw()
+{
+    delete _genParticle;
+    delete _vertex;
+    delete _p4;
+    delete _impactParameter;
 }
 
 Lepton::Lepton(const Lepton &lepton)
 {
-    _impactParameter.reset(new ImpactParameter(*lepton.impactParameter()));
-    _p4.reset(new TLorentzVector(*lepton.p4()));
-    _vertex.reset(new TVector3(*lepton.vertex()));
-    _genParticle.reset(new GenParticle(*lepton.genParticle()));
+    _impactParameter = new ImpactParameter(*lepton.impactParameter());
+    _p4 = new TLorentzVector(*lepton.p4());
+    _vertex = new TVector3(*lepton.vertex());
+    _genParticle = new GenParticle(*lepton.genParticle());
 }
 
 Lepton &Lepton::operator =(const Lepton &lepton)
@@ -53,40 +61,40 @@ void Lepton::reset()
 
 Lepton::ImpactParameter *Lepton::impactParameter()
 {
-    return _impactParameter.get();
+    return _impactParameter;
 }
 
 const Lepton::ImpactParameter *Lepton::impactParameter() const
 {
-    return _impactParameter.get();
+    return _impactParameter;
 }
 
 TLorentzVector *Lepton::p4()
 {
-    return _p4.get();
+    return _p4;
 }
 
 const TLorentzVector *Lepton::p4() const
 {
-    return _p4.get();
+    return _p4;
 }
 
 TVector3 *Lepton::vertex()
 {
-    return _vertex.get();
+    return _vertex;
 }
 
 const TVector3 *Lepton::vertex() const
 {
-    return _vertex.get();
+    return _vertex;
 }
 
 s8::GenParticle *Lepton::genParticle()
 {
-    return _genParticle.get();
+    return _genParticle;
 }
 
 const s8::GenParticle *Lepton::genParticle() const
 {
-    return _genParticle.get();
+    return _genParticle;
 }
