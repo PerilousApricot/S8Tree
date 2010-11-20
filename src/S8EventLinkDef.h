@@ -1,6 +1,5 @@
 #include "interface/S8GenEvent.h"
 #include "interface/S8GenParticle.h"
-#include "interface/S8Event.h"
 #include "interface/S8EventID.h"
 #include "interface/S8Jet.h"
 #include "interface/S8Lepton.h"
@@ -8,6 +7,7 @@
 #include "interface/S8TreeInfo.h"
 #include "interface/S8Trigger.h"
 #include "interface/S8TriggerCenter.h"
+#include "interface/S8Fwd.h"
 
 #ifdef __CINT__
 
@@ -29,8 +29,6 @@
 #pragma link C++ class std::vector<s8::Lepton *>;
 #pragma link C++ class std::vector<s8::PrimaryVertex *>;
 #pragma link C++ class std::vector<s8::Trigger *>;
-
-#pragma link C++ class s8::Event+;
 
 #pragma link C++ class s8::Version+;
 #pragma link C++ class s8::TreeInfo+;

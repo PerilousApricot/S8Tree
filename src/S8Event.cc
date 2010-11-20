@@ -6,6 +6,7 @@
  * Copyright 2010, All rights reserved
  */
 
+/*
 #include <TLorentzVector.h>
 
 #include "interface/S8EventID.h"
@@ -231,3 +232,4 @@ void Event::cloneCollections(const Event &event)
         _triggers.push_back(new Trigger(**trigger));
     }
 }
+*/

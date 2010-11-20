@@ -9,19 +9,20 @@
 #ifndef S8_EVENT
 #define S8_EVENT
 
-#include <vector>
-
 namespace s8
 {
+    /*
     class EventID;
     class GenEvent;
     class Jet;
     class Lepton;
     class PrimaryVertex;
     class Trigger;
+    */
 
     class Event
     {
+        /*
         public:
             typedef std::vector<Jet *>           Jets;
             typedef std::vector<Lepton *>        Leptons;
@@ -77,6 +78,7 @@ namespace s8
             Leptons         _electrons;
             PrimaryVertices _primaryVertices;
             Triggers        _triggers;
+            */
     };
 }
 
