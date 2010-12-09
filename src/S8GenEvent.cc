@@ -6,29 +6,35 @@
  * Copyright 2010, All rights reserved
  */
 
+#include <algorithm>
 #include <stdexcept>
 
 #include "interface/S8GenEvent.h"
 
+using std::find;
 using std::runtime_error;
 
 using s8::GenEvent;
 
 GenEvent::GenEvent() throw():
-    _gluonSplitting(NONE),
     _ptHat(0)
 {
 }
 
 void GenEvent::reset()
 {
-    _gluonSplitting = NONE;
+    _gluonSplittings.clear();
     _ptHat = 0;
 }
 
-GenEvent::GluonSplitting GenEvent::gluonSplitting() const
+bool GenEvent::isGluonSplitting(const GluonSplitting &gluonSplitting) const
 {
-    return _gluonSplitting;
+    if (NONE == gluonSplitting)
+        return _gluonSplittings.empty();
+
+    return _gluonSplittings.end() != find(_gluonSplittings.begin(),
+                                          _gluonSplittings.end(),
+                                          gluonSplitting);
 }
 
 double GenEvent::ptHat() const
@@ -40,11 +46,15 @@ void GenEvent::setGluonSplitting(const GluonSplitting &gluonSplitting)
 {
     switch(gluonSplitting)
     {
-        case NONE: // Fall through
         case BB:   // Fall through
-        case CC:   // Fall through
-        case BBCC: _gluonSplitting = gluonSplitting;
-                   break;
+        case CC:   if (_gluonSplittings.end() == find(_gluonSplittings.begin(),
+                                                      _gluonSplittings.end(),
+                                                      gluonSplitting))
+                       _gluonSplittings.push_back(gluonSplitting);
+
+                   // Fall through
+
+        case NONE: break;
 
         default:
             throw runtime_error("[GenEvent] Unsupported Gluon Splitting value supplied");
