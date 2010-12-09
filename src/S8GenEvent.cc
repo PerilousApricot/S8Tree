@@ -15,20 +15,20 @@ using std::runtime_error;
 using s8::GenEvent;
 
 GenEvent::GenEvent() throw():
-    _isGluonSplitting(false),
+    _gluonSplitting(NONE),
     _ptHat(0)
 {
 }
 
 void GenEvent::reset()
 {
-    _isGluonSplitting = false;
+    _gluonSplitting = NONE;
     _ptHat = 0;
 }
 
-bool GenEvent::isGluonSplitting() const
+GenEvent::GluonSplitting GenEvent::gluonSplitting() const
 {
-    return _isGluonSplitting;
+    return _gluonSplitting;
 }
 
 double GenEvent::ptHat() const
@@ -36,15 +36,24 @@ double GenEvent::ptHat() const
     return _ptHat;
 }
 
-void GenEvent::setGluonSplitting(const bool &value)
+void GenEvent::setGluonSplitting(const GluonSplitting &gluonSplitting)
 {
-    _isGluonSplitting = value;
+    switch(gluonSplitting)
+    {
+        case NONE: // Fall through
+        case BB:   // Fall through
+        case CC:   _gluonSplitting = gluonSplitting;
+                   break;
+
+        default:
+            throw runtime_error("[GenEvent] Unsupported Gluon Splitting value supplied");
+    }
 }
 
 void GenEvent::setPtHat(const double &ptHat)
 {
     if (ptHat < 0)
-        throw runtime_error("[GenEvent] Negative PtHat supplied.");
+        throw runtime_error("[GenEvent] Negative PtHat supplied");
 
     _ptHat = ptHat;
 }
