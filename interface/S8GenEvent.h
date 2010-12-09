@@ -14,18 +14,23 @@ namespace s8
     class GenEvent
     {
         public:
+            enum GluonSplitting { NONE, BB, CC, BBCC };
+
             GenEvent() throw();
 
             void reset();
 
+            GluonSplitting gluonSplitting() const;
             double ptHat() const;
 
 
 
+            void setGluonSplitting(const GluonSplitting &);
             void setPtHat(const double &);
 
         private:
-            double _ptHat;
+            GluonSplitting _gluonSplitting;
+            double         _ptHat;
     };
 }
 
