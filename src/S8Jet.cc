@@ -10,6 +10,8 @@
 
 #include <TLorentzVector.h>
 
+#include "interface/S8GenParticle.h"
+
 #include "interface/S8Jet.h"
 
 using std::runtime_error;
@@ -22,6 +24,7 @@ Jet::Jet() throw():
     _tracks(0)
 {
     _p4 = new TLorentzVector();
+    _genParticle = new GenParticle();
 
     for(int btag = 0; BTAGS > btag; ++btag)
     {
@@ -31,6 +34,7 @@ Jet::Jet() throw():
 
 Jet::~Jet() throw()
 {
+    delete _genParticle;
     delete _p4;
 }
 
@@ -39,6 +43,7 @@ Jet::Jet(const Jet &jet):
     _tracks(jet.tracks())
 {
     _p4 = new TLorentzVector(*jet.p4());
+    _genParticle = new GenParticle(*jet.genParticle());
 
     for(int btag = 0; BTAGS > btag; ++btag)
     {
@@ -52,6 +57,7 @@ Jet &Jet::operator =(const Jet &jet)
     _tracks = jet.tracks();
 
     *_p4 = *jet.p4();
+    *_genParticle = *jet.genParticle();
 
     for(int btag = 0; BTAGS > btag; ++btag)
     {
@@ -67,6 +73,7 @@ void Jet::reset()
     _tracks = 0;
 
     _p4->SetPxPyPzE(0, 0, 0, 0);
+    _genParticle->reset();
 
     for(int btag = 0; BTAGS > btag; ++btag)
     {
@@ -92,6 +99,16 @@ TLorentzVector *Jet::p4()
 const TLorentzVector *Jet::p4() const
 {
     return _p4;
+}
+
+s8::GenParticle *Jet::genParticle()
+{
+    return _genParticle;
+}
+
+const s8::GenParticle *Jet::genParticle() const
+{
+    return _genParticle;
 }
 
 double Jet::btag(const BTag &tag) const

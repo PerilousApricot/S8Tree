@@ -13,6 +13,8 @@ class TLorentzVector;
 
 namespace s8
 {
+    class GenParticle;
+
     class Jet
     {
         public:
@@ -35,6 +37,9 @@ namespace s8
             TLorentzVector *p4();
             const TLorentzVector *p4() const;
 
+            GenParticle *genParticle();
+            const GenParticle *genParticle() const;
+
             double btag(const BTag &) const;
 
 
@@ -49,6 +54,7 @@ namespace s8
             int _tracks;
 
             TLorentzVector *_p4;
+            GenParticle    *_genParticle;
 
             // Low level array is used instead of vector to speed up
             // compilation
