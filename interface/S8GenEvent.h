@@ -18,13 +18,16 @@ namespace s8
 
             void reset();
 
+            bool isGluonSplitting() const;
             double ptHat() const;
 
 
 
+            void setGluonSplitting(const bool &);
             void setPtHat(const double &);
 
         private:
+            bool   _isGluonSplitting;
             double _ptHat;
     };
 }

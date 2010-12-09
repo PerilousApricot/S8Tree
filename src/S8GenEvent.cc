@@ -15,18 +15,30 @@ using std::runtime_error;
 using s8::GenEvent;
 
 GenEvent::GenEvent() throw():
+    _isGluonSplitting(false),
     _ptHat(0)
 {
 }
 
 void GenEvent::reset()
 {
+    _isGluonSplitting = false;
     _ptHat = 0;
+}
+
+bool GenEvent::isGluonSplitting() const
+{
+    return _isGluonSplitting;
 }
 
 double GenEvent::ptHat() const
 {
     return _ptHat;
+}
+
+void GenEvent::setGluonSplitting(const bool &value)
+{
+    _isGluonSplitting = value;
 }
 
 void GenEvent::setPtHat(const double &ptHat)
