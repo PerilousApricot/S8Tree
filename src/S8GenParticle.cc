@@ -15,7 +15,8 @@ using s8::GenParticle;
 
 GenParticle::GenParticle() throw():
     _id(0),
-    _parentId(0)
+    _parentId(0),
+    _status(0)
 {
     _p4 = new TLorentzVector();
     _vertex = new TVector3();
@@ -29,7 +30,8 @@ GenParticle::~GenParticle() throw()
 
 GenParticle::GenParticle(const GenParticle &particle):
     _id(particle.id()),
-    _parentId(particle.parentId())
+    _parentId(particle.parentId()),
+    _status(particle.status())
 {
     _p4 = new TLorentzVector(*particle.p4());
     _vertex = new TVector3(*particle.vertex());
@@ -39,6 +41,7 @@ GenParticle &GenParticle::operator =(const GenParticle &particle)
 {
     _id = particle.id();
     _parentId = particle.parentId();
+    _status = particle.status();
 
     *_p4 = *particle.p4();
     *_vertex = *particle.vertex();
@@ -50,6 +53,7 @@ void GenParticle::reset()
 {
     _id = 0;
     _parentId = 0;
+    _status = 0;
 
     _p4->SetPxPyPzE(0, 0, 0, 0);
     _vertex->SetXYZ(0, 0, 0);
@@ -63,6 +67,11 @@ int GenParticle::id() const
 int GenParticle::parentId() const
 {
     return _parentId;
+}
+
+int GenParticle::status() const
+{
+    return _status;
 }
 
 TLorentzVector *GenParticle::p4()
@@ -96,4 +105,9 @@ void GenParticle::setId(const int &id)
 void GenParticle::setParentId(const int &id)
 {
     _parentId = id;
+}
+
+void GenParticle::setStatus(const int &status)
+{
+    _status = status;
 }

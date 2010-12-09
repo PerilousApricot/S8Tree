@@ -29,6 +29,7 @@ namespace s8
 
             int id() const;
             int parentId() const;
+            int status() const;
 
             TLorentzVector *p4();
             const TLorentzVector *p4() const;
@@ -40,10 +41,12 @@ namespace s8
 
             void setId(const int &);
             void setParentId(const int &);
+            void setStatus(const int &);
 
         private:
             int _id;
             int _parentId;
+            int _status;
 
             TLorentzVector *_p4;
             TVector3       *_vertex;
