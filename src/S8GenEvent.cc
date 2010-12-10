@@ -19,22 +19,65 @@ using s8::GenEvent;
 GenEvent::GenEvent() throw():
     _ptHat(0)
 {
+    for(int gluonSplitting = 0;
+        GLUON_SPLITTINGS > gluonSplitting;
+        ++gluonSplitting)
+    {
+        *(_gluonSplittings + gluonSplitting) = false;
+    }
+}
+
+GenEvent::GenEvent(const GenEvent &event):
+    _ptHat(event.ptHat())
+{
+    for(int gluonSplitting = 0;
+        GLUON_SPLITTINGS > gluonSplitting;
+        ++gluonSplitting)
+    {
+        *(_gluonSplittings + gluonSplitting) =
+            event.isGluonSplitting(GluonSplitting(gluonSplitting));
+    }
+}
+
+GenEvent &GenEvent::operator =(const GenEvent &event)
+{
+    _ptHat = event.ptHat();
+
+    for(int gluonSplitting = 0;
+        GLUON_SPLITTINGS > gluonSplitting;
+        ++gluonSplitting)
+    {
+        *(_gluonSplittings + gluonSplitting) =
+            event.isGluonSplitting(GluonSplitting(gluonSplitting));
+    }
+
+    return *this;
 }
 
 void GenEvent::reset()
 {
-    _gluonSplittings.clear();
     _ptHat = 0;
+
+    for(int gluonSplitting = 0;
+        GLUON_SPLITTINGS > gluonSplitting;
+        ++gluonSplitting)
+    {
+        *(_gluonSplittings + gluonSplitting) = false;
+    }
+}
+
+bool GenEvent::isGluonSplitting() const
+{
+    return isGluonSplitting(BB) ||
+           isGluonSplitting(CC);
 }
 
 bool GenEvent::isGluonSplitting(const GluonSplitting &gluonSplitting) const
 {
-    if (NONE == gluonSplitting)
-        return _gluonSplittings.empty();
+    if (GLUON_SPLITTINGS >= gluonSplitting)
+        throw runtime_error("[GenEvent] Unsupported GluonSplitting value used");
 
-    return _gluonSplittings.end() != find(_gluonSplittings.begin(),
-                                          _gluonSplittings.end(),
-                                          gluonSplitting);
+    return _gluonSplittings[gluonSplitting];
 }
 
 double GenEvent::ptHat() const
@@ -42,19 +85,14 @@ double GenEvent::ptHat() const
     return _ptHat;
 }
 
-void GenEvent::setGluonSplitting(const GluonSplitting &gluonSplitting)
+void GenEvent::setGluonSplitting(const GluonSplitting &gluonSplitting,
+                                 const bool &value)
 {
     switch(gluonSplitting)
     {
         case BB:   // Fall through
-        case CC:   if (_gluonSplittings.end() == find(_gluonSplittings.begin(),
-                                                      _gluonSplittings.end(),
-                                                      gluonSplitting))
-                       _gluonSplittings.push_back(gluonSplitting);
-
-                   // Fall through
-
-        case NONE: break;
+        case CC:   _gluonSplittings[gluonSplitting] = value; 
+                   break;
 
         default:
             throw runtime_error("[GenEvent] Unsupported Gluon Splitting value supplied");

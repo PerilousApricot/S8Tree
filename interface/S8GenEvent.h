@@ -9,25 +9,27 @@
 #ifndef S8_GENEVENT
 #define S8_GENEVENT
 
-#include <vector>
-
 namespace s8
 {
     class GenEvent
     {
         public:
-            enum GluonSplitting { NONE, BB, CC};
+            enum GluonSplitting { BB, CC, GLUON_SPLITTINGS};
 
             GenEvent() throw();
 
+            GenEvent(const GenEvent &);
+            GenEvent &operator =(const GenEvent &);
+
             void reset();
 
+            bool isGluonSplitting() const;
             bool isGluonSplitting(const GluonSplitting &) const;
             double ptHat() const;
 
 
 
-            void setGluonSplitting(const GluonSplitting &);
+            void setGluonSplitting(const GluonSplitting &, const bool &);
             void setPtHat(const double &);
 
         private:
@@ -35,8 +37,8 @@ namespace s8
             // etc. Such events are supported even though they are highly
             // suppressed.
             //
-            std::vector<GluonSplitting> _gluonSplittings;
-            double                      _ptHat;
+            bool   _gluonSplittings[GLUON_SPLITTINGS];
+            double _ptHat;
     };
 }
 
