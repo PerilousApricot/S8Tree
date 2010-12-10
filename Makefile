@@ -3,7 +3,13 @@ CCC      = g++
 LIB		 = libS8Tree.so
 
 # Flags used in compilation
-CXXFLAGS = -O2 -pipe -Wall -fPIC -I./ -I${ROOTSYS}/include -I${BOOST_ROOT}/include
+ifeq ($(strip $(DEBUG)),)
+	DEBUG = -O2
+else
+	DEBUG = -O0 -g
+endif
+
+CXXFLAGS = ${DEBUG} -pipe -Wall -fPIC -I./ -I${ROOTSYS}/include -I${BOOST_ROOT}/include
 LDFLAGS  = -shared -W1 `root-config --libs`
 
 # Get list of all heads, sources and objects. Each source (%.cc) whould have
