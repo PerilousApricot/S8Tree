@@ -74,7 +74,7 @@ bool GenEvent::isGluonSplitting() const
 
 bool GenEvent::isGluonSplitting(const GluonSplitting &gluonSplitting) const
 {
-    if (GLUON_SPLITTINGS >= gluonSplitting)
+    if (GLUON_SPLITTINGS <= gluonSplitting)
         throw runtime_error("[GenEvent] Unsupported GluonSplitting value used");
 
     return _gluonSplittings[gluonSplitting];
